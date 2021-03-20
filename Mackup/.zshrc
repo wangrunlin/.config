@@ -34,4 +34,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/dotfiles/alias
+
+
+# alias
+alias e='exit'
+alias l='ls -A'
+alias n='nvim'
