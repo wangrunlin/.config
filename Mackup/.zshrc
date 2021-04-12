@@ -39,6 +39,9 @@ source $ZSH/oh-my-zsh.sh
 
 ### user config
 
+# setting
+unsetopt beep
+
 # environment
 export GITHUB_GIST="$HOME/github.com/002_gist/"
 
