@@ -120,8 +120,8 @@ noremap ; :
 noremap : ;
 
 " buffer 切换快捷键
-nnoremap <C-h> :bp<CR>
-nnoremap <C-l> :bn<CR>
+nnoremap J :bp<CR>
+nnoremap K :bn<CR>
 
 " Split fast
 nnoremap <leader>\ :vs<CR>
@@ -257,9 +257,6 @@ let g:NERDSpaceDelims=1
 
 " Plug map
 
-" *.cpp 和 *.h 间切换
-nmap <silent> <Leader>sw :FSHere<cr>
-
 " 使用 NERDTree 插件查看工程文件。
-nmap <Leader><Leader> :NERDTreeToggle<CR>
+nmap <Leader>n :NERDTreeToggle<CR>
 

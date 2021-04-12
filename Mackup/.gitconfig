@@ -4,10 +4,10 @@
 [core]
 	quotepath = false
 	excludesfile = /Users/alin/.config/git/ignore
-[http]
-	proxy = socks5://127.0.0.1:1080
-[https]
-	proxy = socks5://127.0.0.1:1080
+; [http]
+	; proxy = socks5://127.0.0.1:1080
+; [https]
+	; proxy = socks5://127.0.0.1:1080
 
 [color]
     ui = auto
@@ -30,3 +30,8 @@
     untracked = cyan
 [alias]
 	last = log -n 3
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

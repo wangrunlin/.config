@@ -43,6 +43,8 @@ Plug 'skywind3000/vim-terminal-help'                    " 使 vim 内置终端�
 Plug 'voldikss/vim-floaterm'                            " 浮动终端
 Plug 'itchyny/vim-cursorword'                           " 显示单词光标
 Plug 'danilamihailov/beacon.nvim'                       " 跳转光标时闪光
+" 查看快捷键绑定
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 " nerdtree
 Plug 'scrooloose/nerdtree',{'on': 'NERDTreeToggle'}                     " 工程管理
@@ -73,6 +75,7 @@ Plug 'luochen1990/rainbow'                              " 彩虹括号 🌈
 Plug 'liuchengxu/vista.vim'                             " 查看、查找 LSP 符号和标签
 Plug 'alpertuna/vim-header'                             " 快速添加代码头注释和开源凭证
 Plug 'scrooloose/nerdcommenter'                         " 快速开关注释插件
+Plug 'mattn/emmet-vim'                                  " html plug
 " 代码块高亮 (nvim-treesitter)
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'
@@ -225,8 +228,8 @@ nnoremap L $
 noremap ; :
 noremap : ;
 
-cnoremap <C-n> <down>
-cnoremap <C-p> <up>
+cnoremap <C-t> r!date +"\%Y-\%m-\%d"
+iab <expr> tds strftime("%Y-%m-%d")
 
 " nnoremap <CR> a<CR><Esc>k$
 nnoremap <C-CR> o<Esc>k
@@ -257,7 +260,7 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
 " 依次遍历子窗口
-nnoremap nw <C-W>w
+nnoremap nw <C-w>w
 
 " Disable the dafault s key
 " nnoremap s <nop>
@@ -345,6 +348,9 @@ nnoremap <Leader>sw :set wrap<CR>
 " Opening a terminal window
 nnoremap <Leader>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>I
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cnoremap w!! w !sudo tee > /dev/null %
+
 " ==================================================
 " function
 " ==================================================
@@ -390,6 +396,35 @@ endfunc
 
 " <Leader>r 运行
 noremap <Leader>r :call CompileRun()<CR>
+
+function AutoCommit()
+    " 进入到当前文件的绝对路径
+    cd %:p:h
+
+    " git 操作
+    :!git add %
+    :!git commit -m "auto commit"
+    :!git push
+endfunction
+
+" auto-commit
+augroup AutoCommit
+    autocmd!
+    autocmd BufWritePost $GITHUB_GIST/idea/idea.md     call AutoCommit()
+    autocmd BufWritePost $GITHUB_GIST/a_word/a_word.md call AutoCommit()
+augroup END
+
+" 更新时间戳
+function! UpdateTimestamp ()
+  '[,']s/Last Modified Date: \zs.*/\= strftime("%Y-%m-%d") /
+endfunction
+
+nnoremap <Leader>u :call UpdateTimestamp()<CR>
+
+augroup TimeStamping
+  autocmd!
+  autocmd BufWritePre,FileWritePre,FileAppendPre *.go,*.py :call UpdateTimestamp()
+augroup END
 
 " ==================================================
 " snippets
@@ -517,16 +552,16 @@ au FileType markdown noremap <Leader>v :MarkdownPreview<CR>
 " 2. todo        -- todo list
 " 3. study
 " 4. vim
-let g:vimwiki_list = [{'path': '~/github.com/blog/', 
+let g:vimwiki_list = [{'path': '~/github.com/000_leo/001_blog', 
                      \ 'syntax': 'markdown', 
                      \ 'ext': '.md'}, 
-                     \{'path': '~/github.com/blog/todo/', 
+                     \{'path': '~/github.com/000_leo/001_blog/todo', 
                      \ 'syntax': 'markdown', 
                      \ 'ext': '.md'},
-                     \{'path': '~/github.com/blog/study/', 
+                     \{'path': '~/github.com/000_leo/001_blog/todo/', 
                      \ 'syntax': 'markdown', 
                      \ 'ext': '.md'},
-                     \{'path': '~/github.com/blog/vim/', 
+                     \{'path': '~/github.com/000_leo/001_blog/vim/', 
                      \ 'syntax': 'markdown', 
                      \ 'ext': '.md'}]
 
@@ -662,6 +697,8 @@ nnoremap ga <Plug>(EasyAlign)
 let g:header_auto_add_header = 0
 let g:header_field_author = 'Leo'
 let g:header_field_author_email = 'alin.run@foxmail.com'
+let g:header_field_timestamp_format = '%Y-%m-%d'
+let g:header_field_license_id = 'MIT'
 nnoremap <F4> :AddHeader<CR>
 
 " ==================================================

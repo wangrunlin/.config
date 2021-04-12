@@ -26,5 +26,22 @@
     "explorer.confirmDelete": false,
     "tabnine.experimentalAutoImports": true,
     "sync.gist": "2ccf000d13b49ca0dea0ab6c037310c2",
-    "liveServer.settings.donotVerifyTags": true
+    "liveServer.settings.donotVerifyTags": true,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "vim.neovimUseConfigFile": true,
+    "vim.handleKeys": {
+
+        "<C-d>": true
+    },
+    "vim.leader": " ",
+    "vim.vimrc.enable": true
 }
