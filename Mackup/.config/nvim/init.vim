@@ -43,6 +43,7 @@ Plug 'skywind3000/vim-terminal-help'                    " 使 vim 内置终端�
 Plug 'voldikss/vim-floaterm'                            " 浮动终端
 Plug 'itchyny/vim-cursorword'                           " 显示单词光标
 Plug 'danilamihailov/beacon.nvim'                       " 跳转光标时闪光
+Plug 'lyokha/vim-xkbswitch'                             " normal 模式自动进入英文输入法
 " 查看快捷键绑定
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
@@ -79,8 +80,6 @@ Plug 'mattn/emmet-vim'                                  " html plug
 " 代码块高亮 (nvim-treesitter)
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 " Plug 'nvim-treesitter/nvim-treesitter-refactor'
-
-" TODO: 中英切换
 
 call plug#end()
 
@@ -204,6 +203,9 @@ autocmd InsertLeave,WinEnter * set cursorline
 " 进入插入模式
 autocmd InsertEnter,WinLeave * set nocursorline nohlsearch
 
+" 中英自动切换
+autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set noimdisable
+
 " 开启文件类型监测
 filetype off
 filetype plugin on
@@ -228,20 +230,17 @@ nnoremap L $
 noremap ; :
 noremap : ;
 
+" 年月日
 cnoremap <C-t> r!date +"\%Y-\%m-\%d"
-iab <expr> tds strftime("%Y-%m-%d")
+" 时分秒
+" cnoremap <C-t> r!date +"\%H-\%M-\%S"
+
+iab <expr> ymd strftime("%Y-%m-%d")
+iab <expr> hms strftime("%H-%M-%S")
 
 " nnoremap <CR> a<CR><Esc>k$
 nnoremap <C-CR> o<Esc>k
 nnoremap <S-CR> O<Esc>j
-
-" 括号补全
-" inoremap ( ()<Esc>i
-" inoremap [ []<Esc>i
-" inoremap { {}<Esc>i
-" inoremap < <><Esc>i
-" inoremap " ""<Esc>i
-" inoremap ,, <Esc>la
 
 " Insert Mode Cursor Movement
 inoremap <C-a> <Home>
@@ -400,31 +399,39 @@ noremap <Leader>r :call CompileRun()<CR>
 function AutoCommit()
     " 进入到当前文件的绝对路径
     cd %:p:h
-
-    " git 操作
-    :!git add %
-    :!git commit -m "auto commit"
-    :!git push
+    :!bash ~/github.com/study_git/commit.sh
 endfunction
 
 " auto-commit
-augroup AutoCommit
-    autocmd!
-    autocmd BufWritePost $GITHUB_GIST/idea/idea.md     call AutoCommit()
-    autocmd BufWritePost $GITHUB_GIST/a_word/a_word.md call AutoCommit()
-augroup END
+" augroup AutoCommit
+    " autocmd!
+    " autocmd BufWritePost $GITHUB_GIST/idea/idea.md     :!auto_commit<CR>
+    " autocmd BufWritePost $GITHUB_GIST/a_word/a_word.md :!auto_commit<CR>
+" augroup END
 
 " 更新时间戳
 function! UpdateTimestamp ()
-  '[,']s/Last Modified Date: \zs.*/\= strftime("%Y-%m-%d") /
+  if &filetype == 'markdown'
+    '[,']s/lastmod: \zs.*/\= strftime("%Y-%m-%d") /
+  else
+    '[,']s/Last Modified Date: \zs.*/\= strftime("%Y-%m-%d") /
+  endif
 endfunction
 
 nnoremap <Leader>u :call UpdateTimestamp()<CR>
 
-augroup TimeStamping
-  autocmd!
-  autocmd BufWritePre,FileWritePre,FileAppendPre *.go,*.py :call UpdateTimestamp()
-augroup END
+" augroup TimeStamping
+  " autocmd!
+  " autocmd BufWritePre,FileWritePre,FileAppendPre *.go,*.py :call UpdateTimestamp()
+" augroup END
+
+" " TODO:  <17-04-21, leo> "智能切换输入法
+" function SwitchInput()
+    " silent :!xkbswitch -s 1<CR>
+" endfunction
+
+" " 自动保存
+" autocmd InsertLeave,WinEnter * call SwitchInput()
 
 " ==================================================
 " snippets
@@ -558,7 +565,7 @@ let g:vimwiki_list = [{'path': '~/github.com/000_leo/001_blog',
                      \{'path': '~/github.com/000_leo/001_blog/todo', 
                      \ 'syntax': 'markdown', 
                      \ 'ext': '.md'},
-                     \{'path': '~/github.com/000_leo/001_blog/todo/', 
+                     \{'path': '~/github.com/000_leo/001_blog/study/', 
                      \ 'syntax': 'markdown', 
                      \ 'ext': '.md'},
                      \{'path': '~/github.com/000_leo/001_blog/vim/', 
@@ -685,10 +692,10 @@ let g:rainbow_conf = {
 " ==================================================
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xnoremap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nnoremap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " ==================================================
 " vim-header
@@ -716,6 +723,41 @@ nnoremap <F4> :AddHeader<CR>
 " EOF
 
 " ==================================================
-" 
+" vim-easymotion
 " ==================================================
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+" map  <Leader>w <Plug>(easymotion-bd-w)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1 " US layout
+
+" ==================================================
+" vim-xkbswitch
+" ==================================================
+
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
+let g:XkbSwitchEnabled = 1
 
