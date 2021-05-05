@@ -6,7 +6,8 @@
 # Last Modified By  : Leo <alin.run@foxmail.com>
 
 export ZSH="$HOME/dotfiles/.oh-my-zsh"
-ZSH_THEME="random"
+ZSH_THEME="ys"
+# ZSH_THEME="robbyrussell"
 ZSH_THEME_RANDOM_QUIET=true # 不显示随机主题提示信息
 ZSH_DISABLE_COMPFIX=true
 
