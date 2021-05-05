@@ -6,8 +6,8 @@
 # Last Modified By  : Leo <alin.run@foxmail.com>
 
 export ZSH="$HOME/dotfiles/.oh-my-zsh"
-ZSH_THEME="ys"
-# ZSH_THEME="robbyrussell"
+# ZSH_THEME="ys"
+ZSH_THEME="robbyrussell"
 ZSH_THEME_RANDOM_QUIET=true # 不显示随机主题提示信息
 ZSH_DISABLE_COMPFIX=true
 
@@ -41,10 +41,12 @@ unsetopt beep
 
 # environment
 export GITHUB_GIST="$HOME/github.com/002_gist/"
+export XDG_CONFIG_HOME="$HOME/dotfiles"
 # export JAVA_HOME="/usr/local/opt/openjdk@11/bin"
 # export PATH="$JAVA_HOME/bin:$PATH"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # alias
 alias e='exit'
