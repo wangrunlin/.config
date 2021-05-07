@@ -130,6 +130,7 @@ let g:terminal_color_14 = '#9AEDFE'
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
 noremap ; :
+noremap : ;
 
 " Save & quit
 noremap Q :q<CR>
@@ -137,7 +138,7 @@ noremap <C-q> :qa<CR>
 noremap S :w<CR>
 
 " Open the vimrc file anytime
-noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+noremap <LEADER>rc :e $MYVIMRC<CR>
 noremap <LEADER>rv :e .nvimrc<CR>
 
 " make Y to copy till the end of the line
@@ -197,12 +198,6 @@ noremap <C-U> 5<C-y>
 noremap <C-E> 5<C-e>
 
 
-
-source $XDG_CONFIG_HOME/nvim/cursor.vim
-
-"If you use Qwerty keyboard, uncomment the next line.
-"source $XDG_CONFIG_HOME/nvim/cursor_for_qwerty.vim
-
 " ===
 " === Insert Mode Cursor Movement
 " ===
@@ -241,13 +236,13 @@ noremap <LEADER>i <C-w>l
 noremap qf <C-w>o
 
 " Disable the default s key
-noremap s <nop>
+" noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 noremap su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap se :set splitbelow<CR>:split<CR>
+noremap sj :set splitbelow<CR>:split<CR>
 noremap sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap si :set splitright<CR>:vsplit<CR>
+noremap sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 noremap <up> :res +5<CR>
@@ -256,7 +251,7 @@ noremap <left> :vertical resize-5<CR>
 noremap <right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+" noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
 noremap sv <C-w>t<C-w>H
 
@@ -391,8 +386,9 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-treesitter/playground'
 
 " Pretty Dress
-Plug 'theniceboy/nvim-deus'
-"Plug 'arzg/vim-colors-xcode'
+" Plug 'theniceboy/nvim-deus'
+Plug 'ajmwagar/vim-deus'
+" Plug 'arzg/vim-colors-xcode'
 
 " Status line
 Plug 'theniceboy/eleline.vim'
@@ -587,6 +583,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "color dracula
 "color one
 color deus
+" color murphy
 "color gruvbox
 "let ayucolor="light"
 "color ayu
@@ -706,6 +703,12 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap tt :CocCommand explorer<CR>
 " coc-translator
 nmap ts <Plug>(coc-translator-p)
+vmap ts <Plug>(coc-translator-pv)
+nmap te <Plug>(coc-translator-e)
+vmap te <Plug>(coc-translator-ev)
+nmap tr <Plug>(coc-translator-r)
+vmap tr <Plug>(coc-translator-rv)
+" nmap th :CocCommand translator.exportHistory<CR>
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
@@ -1322,7 +1325,6 @@ let g:dartfmt_options = ["-l 100"]
 " ===
 " === tcomment_vim
 " ===
-nnoremap ci cl
 let g:tcomment_textobject_inlinecomment = ''
 nmap <LEADER>cn g>c
 vmap <LEADER>cn g>

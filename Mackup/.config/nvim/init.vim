@@ -391,8 +391,9 @@ call plug#begin('~/.config/nvim/plugged')
 " Plug 'nvim-treesitter/playground'
 
 " Pretty Dress
-Plug 'theniceboy/nvim-deus'
-"Plug 'arzg/vim-colors-xcode'
+" Plug 'theniceboy/nvim-deus'
+Plug 'ajmwagar/vim-deus'
+" Plug 'arzg/vim-colors-xcode'
 
 " Status line
 Plug 'theniceboy/eleline.vim'
@@ -586,7 +587,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "color dracula
 "color one
-color deus
+" color deus
+colorscheme pablo
 "color gruvbox
 "let ayucolor="light"
 "color ayu
@@ -1322,7 +1324,6 @@ let g:dartfmt_options = ["-l 100"]
 " ===
 " === tcomment_vim
 " ===
-nnoremap ci cl
 let g:tcomment_textobject_inlinecomment = ''
 nmap <LEADER>cn g>c
 vmap <LEADER>cn g>

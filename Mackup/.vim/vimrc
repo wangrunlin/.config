@@ -43,7 +43,7 @@ set cursorline
 set hlsearch
 
 " 禁止折行
-set nowrap
+" set nowrap
 
 " 开启语法高亮功能
 syntax enable
@@ -80,32 +80,27 @@ set scrolloff=10
 set encoding=UTF-8
 
 " 如果文件夹不存在，则新建文件夹
-" if !isdirectory("$HOME/.vim/files/backup/") || !isdirectory("$HOME/.vim/files/undo/") || !isdirectory("$HOME/.vim/files/swap/")
-    " silent !mkdir -p ~/.vim/files/{ backup, swap, undo , info}
-" endif
-
-" 如果文件夹不存在，则新建文件夹
-if !isdirectory(expand("$HOME/.vim/files/backup")) || !isdirectory(expand("$HOME/.vim/files/swap")) && !isdirectory(expand("$HOME/.vim/files/undo"))
-    silent !mkdir -p ~/.vim/files/backup/
-    silent !mkdir -p ~/.vim/files/swap/
-    silent !mkdir -p ~/.vim/files/undo/
-    silent !mkdir -p ~/.vim/files/info/
+if !isdirectory("$HOME/.vim/tmp/backup/") || !isdirectory("$HOME/.vim/tmp/undo/") || !isdirectory("$HOME/.vim/tmp/swap/") || !isdirectory("$HOME/.vim/tmp/info/")
+    silent !mkdir -p ~/.vim/tmp/backup/
+    silent !mkdir -p ~/.vim/tmp/swap/
+    silent !mkdir -p ~/.vim/tmp/undo/
+    silent !mkdir -p ~/.vim/tmp/info/
 endif
 
 " 备份文件
 set backup
-set backupdir   =~/.vim/files/backup/
+set backupdir   =~/.vim/tmp/backup//
 
 " 交换文件
-set directory   =~/.vim/files/swap//
+set directory   =~/.vim/tmp/swap//
 set updatecount =100
 
 " 撤销文件
 set undofile
-set undodir     =~/.vim/files/undo/
+set undodir     =~/.vim/tmp/undo//
 
 " viminfo 文件
-set viminfo     ='100,n~/.vim/files/info/viminfo
+set viminfo     ='100,n~/.vim/tmp/info/viminfo
 
 " 离开插入模式
 autocmd InsertLeave,WinEnter * set cursorline
@@ -225,6 +220,7 @@ Plug 'scrooloose/nerdtree'                     " 工程管理
 Plug 'ryanoasis/vim-devicons'                  " 文件图标
 Plug 'fholgado/minibufexpl.vim'                " 多文档编辑
 Plug 'Lokaltog/vim-easymotion'                 " 快速移动
+Plug 'ajmwagar/vim-deus'
 "Plug 'suan/vim-instant-markdown'               " markdown 即时预览
 call plug#end()
 

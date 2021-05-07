@@ -1,1 +1,7 @@
-.oh-my-zsh/
+# ignore everything
+/*
+/*/
+
+# ... but these:
+
+!/zsh/

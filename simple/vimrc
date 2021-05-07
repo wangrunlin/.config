@@ -103,13 +103,16 @@ set visualbell
 set autoread
 
 " 如果文件夹不存在，则新建文件夹
-if !isdirectory("$HOME/.vim/files/backup/") || !isdirectory("$HOME/.vim/files/undo/") || !isdirectory("$HOME/.vim/files/swap/")
-    silent !mkdir -p ~/.vim/files/{ backup, swap, undo }
+if !isdirectory("$HOME/.vim/tmp/backup/") || !isdirectory("$HOME/.vim/tmp/undo/") || !isdirectory("$HOME/.vim/tmp/swap/") || !isdirectory("$HOME/.vim/tmp/info/")
+    silent !mkdir -p ~/.vim/tmp/backup/
+    silent !mkdir -p ~/.vim/tmp/swap/
+    silent !mkdir -p ~/.vim/tmp/undo/
+    silent !mkdir -p ~/.vim/tmp/info/
 endif
 
 " 备份文件
 set backup
-set backupdir   =~/.vim/files/backup/
+set backupdir   =~/.vim/files/backup//
 
 " 交换文件
 set directory   =~/.vim/files/swap//
@@ -117,7 +120,7 @@ set updatecount =100
 
 " 撤销文件
 set undofile
-set undodir     =~/.vim/files/undo/
+set undodir     =~/.vim/files/undo//
 
 " viminfo 文件
 set viminfo     ='100,n~/.vim/files/info/viminfo
