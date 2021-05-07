@@ -6,6 +6,8 @@ zmodule utility
 zmodule completion
 zmodule git-info
 zmodule magicmace
+zmodule asciiship
+zmodule duration-info
 zmodule zsh-users/zsh-completions
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-history-substring-search

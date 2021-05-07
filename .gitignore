@@ -8,6 +8,9 @@
 !/zsh/
 !/bin/
 !/simple/
+!/clash/
+!/fish/
+!/karabiner/
 !/tmux/
 !/.tmux.conf
 !/vimium-options.json

@@ -1,10 +1,12 @@
 alias e='exit'
 alias l='ls -A'
+alias la='ls -Al'
+alias ll='ls -l'
 alias n='nvim'
 alias hosts='sudo nvim /etc/hosts'
 alias idea='nvim ~/github.com/002_gist/idea/idea.md'
 alias a_word='nvim ~/github.com/002_gist/a_word/a_word.md'
-alias auto_commit='bash ~/dotfiles/script/auto-commit.sh'
+alias auto_commit='bash ~/.config/bin/auto-commit.sh'
 alias daydayone='bash ~/github.com/study_git/commit.sh'
 alias python='python3'
 
