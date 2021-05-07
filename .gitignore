@@ -3,5 +3,14 @@
 /*/
 
 # ... but these:
-
+!/Mackup/
+!/nvim/
 !/zsh/
+!/bin/
+!/simple/
+!/tmux/
+!/.tmux.conf
+!/vimium-options.json
+!/README.md
+!/README_cn.md
+!/.gitignore

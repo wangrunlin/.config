@@ -170,12 +170,6 @@ noremap <silent> <LEADER>o za
 " ===
 " === Cursor Movement
 " ===
-" New cursor movement (the default arrow keys are used for resizing windows)
-"     ^
-"     u
-" < n   i >
-"     e
-"     v
 noremap <silent> gu gk
 noremap <silent> ge gj
 noremap <silent> \v v$h
