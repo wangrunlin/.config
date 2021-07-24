@@ -12,6 +12,7 @@
 !/fish/
 !/karabiner/
 !/tmux/
+!/auto-config-and-install/
 !/.tmux.conf
 !/vimium-options.json
 !/README.md
