@@ -1,5 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=nvim
+export GREP_COLOR='1;32'
+
 # === Java
 # export JAVA_HOME="/usr/local/opt/openjdk@11/bin"
 # export PATH="$JAVA_HOME/bin:$PATH"

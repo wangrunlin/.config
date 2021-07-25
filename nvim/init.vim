@@ -146,7 +146,11 @@ noremap <LEADER>rv :e .nvimrc<CR>
 nnoremap Y y$
 
 " Copy to system clipboard
+vnoremap <LEADER>y "+y
 vnoremap Y "+y
+
+" Paste from system clipboard
+nnoremap <LEADER>p "+p
 
 " Indentation
 nnoremap < <<
@@ -716,7 +720,7 @@ vmap <C-e> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-e>'
 let g:coc_snippet_prev = '<c-n>'
 imap <C-e> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'David Chen'
+let g:snips_author = 'Leo Wang'
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
 
@@ -745,7 +749,7 @@ let g:table_mode_cell_text_object_i_map = 'k<Bar>'
 " ===
 set rtp+=/usr/local/opt/fzf
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
-set rtp+=/home/david/.linuxbrew/opt/fzf
+set rtp+=/home/leo/.linuxbrew/opt/fzf
 nnoremap <c-p> :Leaderf file<CR>
 " noremap <silent> <C-p> :Files<CR>
 noremap <silent> <C-f> :Rg<CR>
@@ -775,7 +779,7 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
-noremap <c-d> :BD<CR>
+" noremap <c-d> :BD<CR>
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 

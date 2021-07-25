@@ -27,7 +27,7 @@ install_plugin() {
 ohmyzsh_config() {
 	export ZSH="/Users/leo/.oh-my-zsh"
 	ZSH_THEME="robbyrussell"
-	plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+	plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
 	source $ZSH/oh-my-zsh.sh
 }
 
