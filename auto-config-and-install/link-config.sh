@@ -1,9 +1,10 @@
 #!/bin/bash
 
 dotfiles=(
-	gitconfig
 	zshrc
 	npmrc
+	gitconfig
+	ideavimrc
 )
 
 link_dotfiles() {

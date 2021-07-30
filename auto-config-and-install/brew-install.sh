@@ -7,32 +7,53 @@ base_dev=(
 	go
 	maven
 	mysql
+	redis
 )
 
 custom_soft=(
+	n
 	git
+	bat
+	exa
+	fzf
 	tmux
-	ranger
-	lazygit
-	neovim
 	jenv
 	yarn
 	htop
 	wget
-	bat
-	exa
-	fzf
+	hugo
+	nmap
+	frpc
 	tldr
 	cloc
+	keka
 	mycli
+	iredis
+	ranger
+	neovim
+	tomcat
+	lazygit
 	asciinema
 	shellcheck
 	translate-shell
 
+	mos
 	maccy
 	iterm2
 	typora
+	clashx
+	motrix
+	postman
+	crossover
+	virtualbox
+	wine-stable
+	sublime-text
+	google-chrome
+	microsoft-edge
 	jetbrains-toolbox
+	dbeaver-community
+	visual-studio-code
+	microsoft-remote-desktop
 )
 
 fonts=(
@@ -62,7 +83,7 @@ install_brew() {
 	if type brew >/dev/null 2>&1; then
 		echo "brew is exist, install soft..."
 	else
-		echo "install brew..."
+		log_tip "install brew..."
 		# 国内源
 		/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 	fi
@@ -85,16 +106,14 @@ install_soft() {
 install_font() {
 	# if [ -z $(brew tap | grep cask-fonts) ]; then
 	if ! brew tap | grep -q cask-fonts; then
-		echo "brew tap homebrew/cask-fonts"
 		brew tap homebrew/cask-fonts
+		log_success "brew tap homebrew/cask-fonts"
 	fi
 
 	install_soft "${fonts[*]}"
 }
 
 main() {
-	log_tip "brew install"
-
 	install_brew
 	install_soft "${base_dev[*]}"
 	install_soft "${custom_soft[*]}"

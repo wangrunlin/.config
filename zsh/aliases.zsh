@@ -8,6 +8,7 @@ alias nv='nvim'
 alias ra='ranger'
 alias lg='lazygit'
 alias grep="grep --color=auto"
+alias tree="exa --tree"
 alias javac="javac -J-Dfile.encoding=utf8"
 alias python='python3'
 

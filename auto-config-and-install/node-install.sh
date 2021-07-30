@@ -8,6 +8,21 @@ base_dev=(
 	bash-language-server
 )
 
+install_node() {
+	if type node >/dev/null 2>&1; then
+		log_success "node is exist"
+	else
+		if type n >/dev/null 2>&1; then
+			log_tip "node is download..."
+			sudo n lts
+			sudo n latest
+		else
+			log_fail "n not found, can't install node"
+			return 1
+		fi
+	fi
+}
+
 install_soft() {
 	softs=$1
 	for i in ${softs}; do
@@ -23,6 +38,7 @@ install_soft() {
 }
 
 main() {
+	install_node
 	install_soft "${base_dev[*]}"
 	# install_soft "${custom_soft[*]}"
 
