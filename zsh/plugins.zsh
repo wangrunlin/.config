@@ -27,7 +27,7 @@ install_plugin() {
 ohmyzsh_config() {
 	export ZSH="/Users/leo/.oh-my-zsh"
 	ZSH_THEME="robbyrussell"
-	plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
+	plugins=(git git-open z zsh-autosuggestions zsh-syntax-highlighting)
 	source $ZSH/oh-my-zsh.sh
 }
 
@@ -41,8 +41,15 @@ zimfw_config() {
 	fi
 }
 
+plugin_config() {
+	# thefuck
+	eval $(thefuck --alias) 
+	# mcfly: ctrl+r search
+	eval "$(mcfly init zsh)"
+}
 
 main() {
+	plugin_config
 	install_ohmyzsh
 	install_plugin
 	ohmyzsh_config

@@ -369,6 +369,9 @@ endfunc
 
 call plug#begin('~/.config/nvim/plugged')
 
+" docker
+Plug 'ekalinin/Dockerfile.vim'
+
 " Plug 'LoricAndre/fzterm.nvim'
 
 " Testing my own plugin
@@ -515,6 +518,7 @@ Plug 'Yggdroot/indentLine'
 
 " For general writing
 Plug 'junegunn/goyo.vim'
+Plug 'hotoo/pangu.vim'
 "Plug 'reedes/vim-wordy'
 "Plug 'ron89/thesaurus_query.vim'
 

@@ -12,6 +12,8 @@ base_dev=(
 
 custom_soft=(
 	n
+	rg
+	fd
 	git
 	bat
 	exa
@@ -28,27 +30,33 @@ custom_soft=(
 	cloc
 	keka
 	mycli
+	mcfly
 	iredis
 	ranger
 	neovim
 	tomcat
+	httpie
 	lazygit
 	asciinema
 	shellcheck
 	translate-shell
 
 	mos
+	obs
 	maccy
 	iterm2
 	typora
 	clashx
 	motrix
 	postman
+	snipaste
 	crossover
 	virtualbox
+	tor-browser
 	wine-stable
 	sublime-text
 	google-chrome
+	android-studio
 	microsoft-edge
 	jetbrains-toolbox
 	dbeaver-community
